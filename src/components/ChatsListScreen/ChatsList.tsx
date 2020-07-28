@@ -2,6 +2,7 @@ import React, { useCallback } from 'react';
 import { useQuery, gql } from '@apollo/client';
 import moment from 'moment';
 import { List, ListItem } from '@material-ui/core';
+import * as queries from '../../graphql/queries';
 import styled from 'styled-components';
 import { History } from 'history';
 
@@ -88,7 +89,7 @@ export const getChatsQuery = gql`
 `;
 
 const ChatList: React.FC<ChatsListProps> = ({ history }) => {
-  const { data } = useQuery<any>(getChatsQuery);
+  const { data } = useQuery<any>(queries.chats);
 
   const navToChat = useCallback(
     (chat) => {

@@ -1,5 +1,5 @@
 import React from 'react';
-import ChatList from './ChatList';
+import ChatsList from './ChatsList';
 import ChatsNavbar from './ChatsNavbar';
 import styled from 'styled-components';
 import { History } from 'history';
@@ -16,7 +16,7 @@ const ChatsListScreen: React.FC<ChatsListScreenProps> = ({ history }) => (
   <div>
     <Container>
       <ChatsNavbar />
-      <ChatList {...{ history }} />
+      <ChatsList {...{ history }} />
     </Container>
   </div>
 );

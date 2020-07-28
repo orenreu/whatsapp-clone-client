@@ -1,7 +1,8 @@
 import React from 'react';
 import { MockedProvider } from '@apollo/client/testing';
 import { cleanup, render, waitFor, fireEvent, screen } from '@testing-library/react';
-import ChatList, { getChatsQuery } from './ChatList';
+import ChatsList from './ChatsList';
+import * as queries from '../../graphql/queries';
 import { createMemoryHistory } from 'history';
 
 describe('ChatsList', () => {
@@ -21,7 +22,7 @@ describe('ChatsList', () => {
   const mocks = [
     {
       request: {
-        query: getChatsQuery
+        query: queries.chats
       },
       result: {
         data: {
@@ -50,7 +51,7 @@ describe('ChatsList', () => {
 
       const { getByTestId } = render(
         <MockedProvider mocks={mocks} addTypename={false}>
-          <ChatList history={history} />
+          <ChatsList history={history} />
         </MockedProvider>
       );
 
@@ -68,7 +69,7 @@ describe('ChatsList', () => {
 
     const { getByTestId } = render(
       <MockedProvider mocks={mocks} addTypename={false}>
-        <ChatList history={history} />
+        <ChatsList history={history} />
       </MockedProvider>
     );
 
