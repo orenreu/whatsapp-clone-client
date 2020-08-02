@@ -1,10 +1,10 @@
 import React, { useCallback } from 'react';
-import { useQuery, gql } from '@apollo/client';
+import { gql } from '@apollo/client';
 import moment from 'moment';
 import { List, ListItem } from '@material-ui/core';
-import * as queries from '../../graphql/queries';
 import styled from 'styled-components';
 import { History } from 'history';
+import { useChatsQuery } from '../../graphql/types';
 
 const Container = styled.div`
   height: calc(100% - 56px);
@@ -89,14 +89,14 @@ export const getChatsQuery = gql`
 `;
 
 const ChatList: React.FC<ChatsListProps> = ({ history }) => {
-  const { data } = useQuery<any>(queries.chats);
-
   const navToChat = useCallback(
     (chat) => {
       history.replace(`chats/${chat.id}`);
     },
     [history]
   );
+
+  const { data } = useChatsQuery();
 
   if (data === undefined || data.chats === undefined) {
     return null;
