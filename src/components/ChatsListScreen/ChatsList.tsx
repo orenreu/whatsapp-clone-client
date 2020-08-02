@@ -93,7 +93,7 @@ const ChatList: React.FC<ChatsListProps> = ({ history }) => {
 
   const navToChat = useCallback(
     (chat) => {
-      history.push(`chats/${chat.id}`);
+      history.replace(`chats/${chat.id}`);
     },
     [history]
   );

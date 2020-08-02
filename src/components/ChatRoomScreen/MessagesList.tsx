@@ -1,7 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import moment from 'moment';
 import styled from 'styled-components';
-import { ChatQueryMessage } from './index';
 
 const Container = styled.div`
   display: block;
@@ -59,8 +58,14 @@ const Timestamp = styled.div`
   font-size: 12px;
 `;
 
+interface Message {
+  id: string | null;
+  content: string | null;
+  createdAt: string | null;
+}
+
 interface MessagesListProps {
-  messages: Array<ChatQueryMessage>;
+  messages: Array<Message>;
 }
 
 const MessagesList: React.FC<MessagesListProps> = ({ messages }) => {
@@ -76,10 +81,12 @@ const MessagesList: React.FC<MessagesListProps> = ({ messages }) => {
   return (
     <Container ref={selfRef}>
       {messages.map((message: any) => (
-        <MessageItem data-testid="message-item" key={message.id}>
-          <Contents data-testid="message-content">{message.content}</Contents>
-          <Timestamp data-testid="message-date">{moment(message.createdAt).format('HH:mm')}</Timestamp>
-        </MessageItem>
+        <div key={message.id}>
+          <MessageItem data-testid="message-item">
+            <Contents data-testid="message-content">{message.content}</Contents>
+            <Timestamp data-testid="message-date">{moment(message.createdAt).format('HH:mm')}</Timestamp>
+          </MessageItem>
+        </div>
       ))}
     </Container>
   );

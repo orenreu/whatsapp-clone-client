@@ -46,22 +46,20 @@ describe('ChatsList', () => {
   ];
 
   it('renders fetched chats data', async () => {
-    {
-      const history = createMemoryHistory();
+    const history = createMemoryHistory();
 
-      const { getByTestId } = render(
-        <MockedProvider mocks={mocks} addTypename={false}>
-          <ChatsList history={history} />
-        </MockedProvider>
-      );
+    const { getByTestId } = render(
+      <MockedProvider mocks={mocks} addTypename={false}>
+        <ChatsList history={history} />
+      </MockedProvider>
+    );
 
-      await waitFor(() => screen.getByTestId('name'));
+    await waitFor(() => screen.getByTestId('name'));
 
-      expect(getByTestId('name')).toHaveTextContent('Foo Bar');
-      expect(getByTestId('picture')).toHaveAttribute('src', 'https://localhost:4000/picture.jpg');
-      expect(getByTestId('content')).toHaveTextContent('Hello');
-      expect(getByTestId('date')).toHaveTextContent('02:00');
-    }
+    expect(getByTestId('name')).toHaveTextContent('Foo Bar');
+    expect(getByTestId('picture')).toHaveAttribute('src', 'https://localhost:4000/picture.jpg');
+    expect(getByTestId('content')).toHaveTextContent('Hello');
+    expect(getByTestId('date')).toHaveTextContent('02:00');
   });
 
   it('should navigate to the target chat room on chat item click', async () => {
